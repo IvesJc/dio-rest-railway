@@ -4,13 +4,13 @@ spring:
     username: user
     password:
   jpa:
-    show-sql: true  # VER NO LOG
-    open-in-view: false
+#    show-sql: true  # VER NO LOG
+#    open-in-view: false
     hibernate:
       ddl-auto: create # HIBERNATE CRIA AS TABELAS
-    properties:
-      hibernate:
-        format_sql: true  # DEIXAR O LOG MAIS LEGIVEL COM A FORMATAÇÃO SQL
+#    properties:
+#      hibernate:
+#        format_sql: true  # DEIXAR O LOG MAIS LEGIVEL COM A FORMATAÇÃO SQL
   h2:
     console:
       enabled: true
