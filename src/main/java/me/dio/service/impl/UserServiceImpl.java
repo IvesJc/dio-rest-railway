@@ -3,6 +3,8 @@ package me.dio.service.impl;
 import me.dio.domain.dto.UserDTO;
 import me.dio.domain.mapper.UserDTOMapper;
 import me.dio.domain.model.User;
+import me.dio.exception.CreateDuplicateUserException;
+import me.dio.exception.UserNotFoundException;
 import me.dio.repository.UserRepository;
 import me.dio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO findById(Long id) {
         return userRepository.findById(id).
                 map(userDTOMapper).
-                orElseThrow(NoSuchElementException::new);
+                orElseThrow(UserNotFoundException::new);
     }
 
     @Override
@@ -42,7 +44,7 @@ public class UserServiceImpl implements UserService {
         if (!userRepository.existsByAccountNumber(user.getAccount().getNumber())){
             return userRepository.save(user);
         }
-        throw new IllegalArgumentException("This account number already exists");
+        throw new CreateDuplicateUserException();
     }
 
     @Override
